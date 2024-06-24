@@ -1,0 +1,16 @@
+version: 2
+
+sources:
+- name: Pefa_hbue
+  schema: 1_bronze
+  tables:
+    - name: casy_artikel
+    - name: casy_lagerbewegung
+    - name: date_table
+    - name: casy_kststamm
+    - name: casy_auftrag
+  
+    
+    
+
+  

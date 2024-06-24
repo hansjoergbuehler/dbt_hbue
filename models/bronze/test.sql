@@ -1,0 +1,1 @@
+select * from {{ source('Pefa_hbue', 'casy_artikel') }}
