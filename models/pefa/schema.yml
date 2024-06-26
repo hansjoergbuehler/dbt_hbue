@@ -9,6 +9,11 @@ sources:
     - name: date_table
     - name: casy_kststamm
     - name: casy_auftrag
+- name: admin
+  database: Pefa_hbue
+  schema: dbo
+  tables:
+    - name: translate
   
     
     
