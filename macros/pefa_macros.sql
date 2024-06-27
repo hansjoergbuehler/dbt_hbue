@@ -31,3 +31,24 @@
     {%- endfor %}
     FROM {{ source(source_name, object_name) }}
 {% endmacro %}
+
+
+{% macro source_schema() %}
+    {%- set query -%}
+        SELECT tab_name, col_name, col_name_translated,  col_description
+        FROM {{ source('admin', 'translate') }}
+        ORDER BY tab_name
+    {%- endset -%}
+    {%- set results = run_query(query) %}
+  tables:
+    {%- set ns = namespace(last_tab_name = 'xxx') -%}
+    {%- for row in results -%}
+        {%- if ns.last_tab_name != row[0] %}
+    - name: {{row[0]}}
+      columns:
+        {%- endif %}
+      - name: {{row[1]}}
+        description: {{row[2]}} - {{row[3]}}
+        {%- set ns.last_tab_name = row[0] %}
+    {%- endfor -%}
+{% endmacro %}
